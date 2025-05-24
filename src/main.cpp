@@ -11,6 +11,9 @@
 #define M_PI 3.14159265
 #endif
 
+// DEBUG
+#include "debug.cpp"
+
 // --- Estructuras ---
 
 typedef struct {
@@ -284,127 +287,10 @@ Figure genLemniscate(float t1 = 0, float t2 = 2 * M_PI)
     return newFigure(X, Y);
 }
 
-float r0 = 0.992;
-float r1 = 0.921;
-
-float dd1 = 0.254;
-float rr1 = 0.309 - dd1;
-float dd2 = 0.472;
-float rr2 = 0.522 - dd2;
-float rr21 = 0.580 - dd2;
-float dd3 = 0.675;
-float rr3 = 0.726 - dd3;
-float dd4 = 0.760;
-float rr4 = 0.806 - dd4;
-
-std::vector<Point> deco1B = {
-    { 0.868619f, -0.306276f },
-    { 0.768201f, -0.235983f },
-    { 0.783264f, -0.175732f },
-    { 0.823431f, -0.11046f },
-    { 0.913808f, -0.115481f },
-    { 0.913808f, -0.097908f },
-    { 0.916318f, -0.100418f },
-    { 0.81841f, -0.0677824f },
-    { 0.803347f, -0.00251046f },
-    { 0.810879f, 0.0728034f },
-    { 0.913808f, 0.100418f },
-    { 0.911297f, 0.117992f },
-    { 0.911297f, 0.117992f },
-    { 0.803347f, 0.123013f },
-    { 0.785774f, 0.188285f },
-    { 0.768201f, 0.251046f },
-    { 0.866109f, 0.303766f }
-};
-
-std::vector<Point> deco2B = {
-    { 0.881172f, -0.251046f },
-    { 0.833473f, -0.220921f },
-    { 0.841004f, -0.193305f },
-    { 0.861088f, -0.160669f },
-    { 0.903766f, -0.168201f },
-    { 0.921339f, -0.105439f },
-    { 0.921339f, -0.0451883f },
-    { 0.87113f, -0.032636f },
-    { 0.863598f, 0 },
-    { 0.883682f, 0.0527197f },
-    { 0.921339f, 0.0476988f },
-    { 0.918828f, 0.100418f },
-    { 0.906276f, 0.168201f },
-    { 0.846025f, 0.168201f },
-    { 0.843515f, 0.198326f },
-    { 0.841004f, 0.243515f },
-    { 0.883682f, 0.253557f }
-};
-
-std::vector<Point> deco3B = {
-    { 0.662762f, -0.557322f },
-    { 0.564854f, -0.494561f },
-    { 0.552301f, -0.421757f },
-    { 0.499582f, -0.238494f },
-    { 0.353975f, -0.145607f },
-    { 0.283682f, -0.0677824f },
-    { 0.253556f, -0.0552301f },
-    { 0.138075f, -0.0502092f },
-    { 0.138075f, -0.0502092f },
-    { 0.0502092f, -0.00251046f },
-    { 0.0502092f, -0.00251046f },
-    { 0.138075f, -0.0527197f },
-    { 0.138075f, -0.0527197f },
-    { 0.0351464f, -0.0276151f },
-    { 0.0351464f, -0.0276151f },
-    { 0.135565f, -0.0527197f },
-    { 0.135565f, -0.0527197f },
-    { 0.210879f, -0.128033f },
-    { 0.210879f, -0.128033f },
-    { 0.258577f, -0.145607f },
-    { 0.353975f, -0.148117f },
-    { 0.542259f, -0.16318f },
-    { 0.667782f, -0.100418f },
-    { 0.783264f, -0.0301255f },
-    { 0.856067f, -0.0753138f }
-};
-
-std::vector<Point> deco4B = {
-    { 0.690377f, 0.416736f },
-    { 0.632636f, 0.37908f },
-    { 0.612552f, 0.316318f },
-    { 0.582427f, 0.246025f },
-    { 0.582427f, 0.246025f },
-    { 0.667782f, 0.210879f },
-    { 0.667782f, 0.210879f },
-    { 0.738075f, 0.180753f },
-    { 0.780753f, 0.195816f }
-};
-
-std::vector<Point> deco5B = {
-    { 0.750628f, -0.308787f },
-    { 0.846025f, -0.351464f },
-    { 0.846025f, -0.351464f }
-};
-
-Figure circle = genCircle();
-Figure deco1 = genBezier(deco1B);
-Figure deco2 = genBezier(deco2B);
-Figure deco3 = genBezier(deco3B);
-Figure deco4 = genBezier(deco4B);
-Figure deco5 = genBezier(deco5B);
-
 // --- El programa ---
+
 void drawShape()
 {
-    drawWithScale(BORDER, circle, r0, r0, 4);
-    drawWithScale(BORDER, circle, r1, r1, 4);
-    drawFlower(BORDER, circle, 8, dd1, rr1, rr1, false, 4);
-    drawFlower(BORDER, circle, 8, dd2, rr2, rr2, false, 4);
-    drawFlower(BORDER, circle, 8, dd2, rr21, rr21, false, 4);
-    drawFlower(BORDER, circle, 8, dd3, rr3, rr3, false, 4);
-    drawFlower(BORDER, circle, 8, dd4, rr4, rr4, true, 4);
-    drawFlower(BORDER, deco1, 8, 0, 1, 1, false, 4);
-    drawFlower(BORDER, deco2, 8, 0, 1, 1, false, 4);
-    drawFlower(BORDER, deco3, 8, 0, 1, 1, false, 4);
-    drawFlower(BORDER, deco4, 8, 0, 1, 1, false, 4);
-    drawFlower(BORDER, deco5, 8, 0, 1, 1, false, 4);
 }
 
 // --- Funciones de GLUT ---
@@ -415,8 +301,20 @@ void display(void)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    // DEBUG
+    if (debug) {
+        drawImageReference();
+    }
+
     // Dibujado principal
     drawShape();
+
+    // DEBUG
+    if (debug) {
+        drawAxes(1.1f, 1.5f);
+        drawCoordinatesText();
+        drawBezierDebug();
+    }
 
     glDisable(GL_BLEND);
 
@@ -450,9 +348,12 @@ int main(int argc, char* argv[])
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(600, 600);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("Pregunta2-1");
+    glutCreateWindow("Problema1-2");
 
     // Init
+
+    // DEBUG
+    loadTexture("problema12.png");
 
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glEnable(GL_LINE_SMOOTH);
@@ -461,6 +362,12 @@ int main(int argc, char* argv[])
     // Register GLUT callbacks
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
+
+    // DEBUG
+    glutMouseFunc(mouseCallback);
+    glutKeyboardFunc(keyboardCallback);
+    glutMotionFunc(mouseMotionCallback);
+    glutPassiveMotionFunc(mouseMotionCallback);
 
     glutMainLoop();
     return 0;
